@@ -18,6 +18,30 @@ Where `<shader_file>` is a GLSL source code file path.
 
 XCompute has some example shaders located in the [Shaders](Shaders) directory.
 
+## Writing Shaders
+
+XCompute provides the following uniforms:
+
+- `uTime` **[float]** - Current frame time
+- `uResolution` **[vec2]** - Current output resolution
+- `uMouse` **[vec2]** - Current mouse position on screen
+
+The output image format should be 32-bit floating point RGBA.
+
+Example:
+
+```glsl
+layout(rgba32f, binding = 0) uniform image2D img_output;
+```
+
+The `main()` function should output an image.
+
+Example:
+
+```glsl
+imageStore(img_output, pixel_coords, vec4(color, 1.0));
+```
+
 ## Building
 
 All third-party dependencies are fetched by CMake. All you need to do is configure and build.
